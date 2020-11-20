@@ -19,13 +19,13 @@ function buildChart(sample) {
         var array = samples.filter(sampleobject => sampleobject.id == sample);
         var results = array[0];
         var ids = results.otu_ids;
-        var lables = results.otu_labels;
+        var labels = results.otu_labels;
         var values = results.sample_values;
 
         var barData = [{
             x: values.slice(0,10).reverse(),
             y: ids.slice(0,10).map(otuID => `OTU ${otuID}`).reverse(),
-            text: lables.slice(0,10).reverse(),
+            text: labels.slice(0,10).reverse(),
             type: "bar",
             orientation: "h"
         }];
@@ -39,7 +39,7 @@ function buildChart(sample) {
         var bubbleData = [{
             x: ids,
             y: values,
-            text: lables,
+            text: labels,
             mode: "markers",
             marker: {
                 color: ids,
