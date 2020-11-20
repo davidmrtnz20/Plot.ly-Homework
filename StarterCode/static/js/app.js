@@ -3,11 +3,11 @@ function buildMetadata(sample) {
         var metadata = data.metadata;
         var array = metadata.filter(sampleobject => sampleobject.id == sample);
         var results = array[0];
-        var panel = d3.select("#sample-metadata");
-        panel.html("");
+        var PANEL = d3.select("#sample-metadata");
+        PANEL.html("");
 
         Object.entries(results).forEach(([key, value]) => {
-            panel.append("h6").text(`${key}:${value}`);
+            PANEL.append("h6").text(`${key}:${value}`);
         });
 
     });
@@ -18,12 +18,12 @@ function buildChart(sample) {
         var samples = data.samples;
         var array = samples.filter(sampleobject => sampleobject.id == sample);
         var results = array[0];
-        var ids = results.otu_ids;
+        var id = results.otu_ids;
         var lables = results.otu_lables;
         var values = results.sample_values;
 
         var barData = [{
-            y: ids.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse(),
+            y: id.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse(),
             x: values.slice(0, 10).reverse(),
             text: lables.slice(0, 10).revrse(),
             type: "bar",
@@ -37,12 +37,12 @@ function buildChart(sample) {
         Plotly.plot("bar", barData, barLayout);
 
         var bubbleData = [{
-            x: ids,
+            x: id,
             y: values,
             text: lables,
             mode: "markers",
             marker: {
-                color: ids,
+                color: id,
                 size: values
             }
         }];
