@@ -18,14 +18,14 @@ function buildChart(sample) {
         var samples = data.samples;
         var array = samples.filter(sampleobject => sampleobject.id == sample);
         var results = array[0];
-        var id = results.otu_ids;
+        var ids = results.otu_ids;
         var lables = results.otu_lables;
         var values = results.sample_values;
 
         var barData = [{
-            y: id.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse(),
-            x: values.slice(0, 10).reverse(),
-            text: lables.slice(0, 10).revrse(),
+            x: values.slice(0,10).reverse(),
+            y: ids.slice(0,10).map(otuID => `OTU ${otuID}`).reverse(),
+            text: lables.slice(0,10).reverse(),
             type: "bar",
             orientation: "h"
         }];
@@ -37,12 +37,12 @@ function buildChart(sample) {
         Plotly.plot("bar", barData, barLayout);
 
         var bubbleData = [{
-            x: id,
+            x: ids,
             y: values,
             text: lables,
             mode: "markers",
             marker: {
-                color: id,
+                color: ids,
                 size: values
             }
         }];
