@@ -19,8 +19,22 @@ function buildChart(sample) {
         var array = samples.filter(sampleobject => sampleobject.id == sample);
         var results = array[0];
         var ids = results.otu_ids;
-        var lables = results.otu_lables;
+        var lables = results.otu_labels;
         var values = results.sample_values;
+
+        var barData = [{
+            x: values.slice(0,10).reverse(),
+            y: ids.slice(0,10).map(otuID => `OTU ${otuID}`).reverse(),
+            text: lables.slice(0,10).reverse(),
+            type: "bar",
+            orientation: "h"
+        }];
+
+        var barLayout = {
+            title: "Top 10 OTUs Found"
+        };
+
+        Plotly.plot("bar", barData, barLayout);
 
         var bubbleData = [{
             x: ids,
