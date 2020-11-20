@@ -22,7 +22,7 @@ function buildChart(sample) {
         var lables = results.otu_lables;
         var values = results.sample_values;
 
-        var trace1 = [{
+        var barData = [{
             y: ids.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse(),
             x: values.slice(0, 10).reverse(),
             text: lables.slice(0, 10).revrse(),
@@ -30,15 +30,13 @@ function buildChart(sample) {
             orientation: "h"
         }];
 
-        var barData = [trace1];
-
         var barLayout = {
             title: "Top 10 OTUs Found"
         };
 
         Plotly.newPlot("bar", barData, barLayout);
 
-        var trace2 = [{
+        var bubbleData = [{
             x: ids,
             y: values,
             text: lables,
@@ -48,8 +46,6 @@ function buildChart(sample) {
                 size: values
             }
         }];
-
-        var bubbleData = [trace2];
 
         var bubbleLayout = {
             xaxis: { title: "Id's" }
