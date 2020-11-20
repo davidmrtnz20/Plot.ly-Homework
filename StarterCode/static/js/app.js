@@ -82,7 +82,7 @@ function init() {
 
 function optionChanged(newSample) {
     buildChart(newSample);
-    buildMetadata(newSmaples);
+    buildMetadata(newSamples);
 }
 
 init();
