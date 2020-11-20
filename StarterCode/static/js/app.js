@@ -34,7 +34,7 @@ function buildChart(sample) {
             title: "Top 10 OTUs Found"
         };
 
-        Plotly.newPlot("bar", barData, barLayout);
+        Plotly.plot("bar", barData, barLayout);
 
         var bubbleData = [{
             x: ids,
@@ -51,7 +51,7 @@ function buildChart(sample) {
             xaxis: { title: "Id's" }
         };
 
-        Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+        Plotly.plot("bubble", bubbleData, bubbleLayout);
 
     });
 }
